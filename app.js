@@ -14,6 +14,7 @@ const previewImage = document.querySelector("#previewImage");
 const removeImage = document.querySelector("#removeImage");
 const sketchPad = document.querySelector("#sketchPad");
 const ctx = sketchPad.getContext("2d");
+const STORAGE_KEY = "what-hit-you.entries";
 
 let drawing = false;
 
@@ -45,8 +46,6 @@ function addEntry() {
   const hasSketch = !isCanvasBlank();
   if (!text && !hasImage && !hasSketch) return;
 
-  const card = document.createElement("article");
-  card.className = "entry-card";
   const stamp = new Intl.DateTimeFormat("en-US", {
     hour: "numeric",
     minute: "2-digit",
@@ -54,8 +53,12 @@ function addEntry() {
   const parts = [];
   if (hasImage) parts.push("image");
   if (hasSketch) parts.push("sketch");
-  card.innerHTML = `<small>${stamp}${parts.length ? " / " + parts.join(" / ") : ""}</small>${escapeHtml(text || "Captured")}`;
-  entries.prepend(card);
+  const entry = {
+    text: text || "Captured",
+    meta: `${stamp}${parts.length ? " / " + parts.join(" / ") : ""}`,
+  };
+  renderEntry(entry);
+  saveEntry(entry);
 
   entryInput.value = "";
   previewImage.removeAttribute("src");
@@ -63,6 +66,32 @@ function addEntry() {
   clearCanvas();
   resetPanels();
   setCompact(true);
+}
+
+function renderEntry(entry) {
+  const card = document.createElement("article");
+  card.className = "entry-card";
+  card.innerHTML = `<small>${escapeHtml(entry.meta)}</small>${escapeHtml(entry.text)}`;
+  entries.prepend(card);
+}
+
+function saveEntry(entry) {
+  const saved = getSavedEntries();
+  saved.unshift(entry);
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(saved.slice(0, 12)));
+}
+
+function getSavedEntries() {
+  try {
+    return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+  } catch {
+    return [];
+  }
+}
+
+function restoreEntries() {
+  getSavedEntries().reverse().forEach(renderEntry);
+  if (entries.children.length > 0) setCompact(true);
 }
 
 function escapeHtml(value) {
@@ -169,6 +198,7 @@ sketchPad.addEventListener("touchmove", draw, { passive: false });
 window.addEventListener("touchend", stopDraw);
 
 updateTime();
+restoreEntries();
 entryInput.focus();
 
 if ("serviceWorker" in navigator) {
