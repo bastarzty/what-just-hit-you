@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#ffef93" />
+    <meta name="description" content="A quick capture app for thoughts, voice notes, images, and sketches." />
+    <title>What just hit you?</title>
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="icon" href="./assets/app-icon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="stage">
+      <section class="phone" aria-label="Thought capture prototype">
+        <div class="time-label" id="timeLabel">TUESDAY, 1:47 AM</div>
+
+        <section class="composer composer-full" id="composer">
+          <header class="composer-header">
+            <h1>What just hit you?</h1>
+            <button class="done-button" id="doneButton" type="button" aria-label="Save entry">
+              <img src="./assets/check-icon.svg" alt="" />
+            </button>
+          </header>
+
+          <div class="input-area">
+            <span class="cursor" aria-hidden="true"></span>
+            <textarea id="entryInput" placeholder="Type anything" aria-label="Type anything"></textarea>
+          </div>
+
+          <div class="attachment-preview" id="attachmentPreview" hidden>
+            <img id="previewImage" alt="Selected attachment preview" />
+            <button type="button" id="removeImage" aria-label="Remove attachment">x</button>
+          </div>
+
+          <canvas class="sketch-pad" id="sketchPad" width="300" height="250" hidden></canvas>
+
+          <nav class="tool-bar" aria-label="Capture tools">
+            <button class="tool-button" id="voiceButton" type="button" aria-label="Record voice note">
+              <img src="./assets/voice-icon.svg" alt="" />
+            </button>
+            <button class="tool-button" id="imageButton" type="button" aria-label="Add image">
+              <img src="./assets/image-icon.svg" alt="" />
+            </button>
+            <button class="tool-button" id="moodButton" type="button" aria-label="Pick mood">
+              <img src="./assets/mood-icon.svg" alt="" />
+            </button>
+            <button class="tool-button" id="penButton" type="button" aria-label="Sketch">
+              <img src="./assets/pen-icon.svg" alt="" />
+            </button>
+          </nav>
+        </section>
+
+        <section class="entries" id="entries" aria-live="polite"></section>
+        <input id="imageInput" type="file" accept="image/*" hidden />
+      </section>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
