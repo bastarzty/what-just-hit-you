@@ -1,4 +1,4 @@
-const CACHE_NAME = "what-hit-you-v1";
+const CACHE_NAME = "what-hit-you-v2";
 const APP_SHELL = [
   "/",
   "/index.html",
@@ -7,6 +7,7 @@ const APP_SHELL = [
   "/manifest.webmanifest",
   "/assets/app-icon-192.png",
   "/assets/app-icon-512.png",
+  "/assets/idea-me-logo.png",
   "/assets/app-icon.svg",
   "/assets/check-icon.svg",
   "/assets/image-icon.svg",
