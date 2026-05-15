@@ -1,17 +1,13 @@
-const CACHE_NAME = "what-hit-you-v3";
+const CACHE_NAME = "idea-me-v2";
 const APP_SHELL = [
   "/",
   "/index.html",
-  "/styles.css",
-  "/app.js",
   "/manifest.webmanifest",
   "/assets/app-icon-192.png",
   "/assets/app-icon-512.png",
   "/assets/idea-me-logo.png",
-  "/assets/app-icon.svg",
   "/assets/check-icon.svg",
   "/assets/image-icon.svg",
-  "/assets/mood-icon.svg",
   "/assets/pen-icon.svg",
   "/assets/voice-icon.svg",
 ];

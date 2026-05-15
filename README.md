@@ -1,15 +1,16 @@
-# What Just Hit You
+# idea me
 
-A lightweight PWA prototype generated from a Figma mobile UI.
+A mobile PWA prototype for frictionless idea capture. Creatives can capture text, voice, or photo ideas, get an AI-style folder suggestion, and track idea progress over time.
 
 ## Run Locally
 
 ```bash
-python3 -m http.server 4173
+npm install
+npm run dev
 ```
 
-Then open `http://localhost:4173/`.
+Then open the local Vite URL shown in the terminal.
 
 ## Deploy
 
-This project is static and can be deployed directly to Vercel with no build command.
+The project deploys to Vercel from GitHub. Vercel runs `npm run build` and serves the generated `dist` folder.
