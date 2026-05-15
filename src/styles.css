@@ -111,8 +111,9 @@ button {
 
 .capture-body {
   position: absolute;
-  inset: 124px 0 104px;
+  inset: 124px 0 172px;
   padding: 39px 40px;
+  overflow-y: auto;
   background: var(--card);
 }
 
@@ -167,7 +168,8 @@ textarea::placeholder {
   position: absolute;
   left: 24px;
   right: 24px;
-  bottom: 31px;
+  bottom: 106px;
+  z-index: 7;
   height: 64px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -586,9 +588,12 @@ textarea::placeholder {
     top: calc(124px + env(safe-area-inset-top));
   }
 
-  .capture-toolbar,
   .bottom-nav {
     bottom: max(28px, calc(18px + env(safe-area-inset-bottom)));
+  }
+
+  .capture-toolbar {
+    bottom: max(104px, calc(94px + env(safe-area-inset-bottom)));
   }
 }
 

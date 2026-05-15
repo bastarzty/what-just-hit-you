@@ -165,7 +165,7 @@ function App() {
         <div className="screen-transition" key={currentScreen}>
           {screen}
         </div>
-        {currentScreen === "capture" ? null : <BottomNav />}
+        <BottomNav />
         {aiSheetOpen ? <AiBottomSheet /> : null}
       </section>
     </main>
